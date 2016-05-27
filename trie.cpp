@@ -1,75 +1,76 @@
 #include "trie.h"
+#include "node.h"
 
 Trie::Trie()
+    : m_root( new Node() )
 {
-    init();
 }
 
 Trie::~Trie()
 {
-}
-
-void Trie::init()
-{
-    head = new node();
-    head->prefixCount = 0;
-    head->isEnd = false;
+    //Destrutor
 }
 
 void Trie::insert( string str )
 {
-    node * current = head;
-    current->prefixCount++;
+    Node* current = m_root;
 
-    for( unsigned i=0; i < str.length(); ++i )
+    if ( str.length() == 0 )
     {
-        int letter = static_cast<int>( str[i] ) - static_cast<int>( 'a' );
+        current->setIsEnd();
+        return;
+    }
 
-        if( current->child[letter] == NULL )
+    for ( unsigned i = 0; i < str.length(); i++ )
+    {
+        Node* child = current->findChild( str[i] );
+
+        if ( child != NULL )
         {
-            current->child[letter] = new node();
-            current->child[letter]->prefixCount++;
-            current = current->child[letter];
+            current = child;
+        }
+        else
+        {
+            Node* tmp = new Node();
+            tmp->setContent( str[i] );
+            current->appendChild( tmp );
+            current = tmp;
+        }
+
+        if ( i == str.length() - 1 )
+        {
+            current->setIsEnd();
         }
     }
-    current->isEnd = true;
 }
 
 bool Trie::search( string str )
 {
-    node * current = head;
+    Node* current = m_root;
 
-    for( unsigned i=0; i < str.length(); ++i )
+    while ( current != NULL )
     {
-        int letter = static_cast<int>( str[i] ) - static_cast<int>( 'a' );
-
-        if( current->child[letter] == NULL )
+        for ( unsigned i = 0; i < str.length(); i++ )
         {
-            return false;
+            Node* tmp = current->findChild( str[i] );
+
+            if ( tmp == NULL )
+            {
+                return false;
+            }
+
+            current = tmp;
         }
 
-        current = current->child[letter];
-    }
-    return current->isEnd;
-}
-
-int Trie::wordsWithPrefix( string prefix )
-{
-    node * current = head;
-
-    for( unsigned i=0; i < prefix.length(); ++i )
-    {
-        int letter = static_cast<int>( prefix[i] ) - static_cast<int>( 'a' );
-
-        if( current->child[letter] == NULL )
+        if ( current->isEnd() )
         {
-            return 0;
+            return true;
         }
         else
         {
-            current = current->child[letter];
+            return false;
         }
     }
 
-    return current->prefixCount;
+    return false;
 }

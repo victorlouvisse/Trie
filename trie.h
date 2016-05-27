@@ -5,27 +5,19 @@
 
 using namespace std;
 
-#define ALPHABET_SIZE 25
+class Node;
 
 class Trie
 {
-
-    struct node
-    {
-        bool isEnd;
-        int prefixCount;
-        struct node* child[ALPHABET_SIZE];
-    } *head;
-
-
 public:
     Trie();
     ~Trie();
 
-    void init();
     void insert( string str );
     bool search( string str );
-    int wordsWithPrefix( string prefix );
+
+private:
+    Node* m_root;
 };
 
 #endif // TRIE_H
