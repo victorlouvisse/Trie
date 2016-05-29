@@ -32,6 +32,34 @@ void loadDictionary()
     }
 }
 
+void removeAccents( string * str )
+{
+    string accents = "àâêôûãõáéíóúçüÀÂÊÔÛÃÕÁÉÍÓÚÇÜ";
+    string noAccents = "aaeouaoaeioucuAAEOUAOAEIOUCU";
+
+    for( unsigned i=0; i < str->size(); i++ )
+    {
+        for( unsigned j=0; j < accents.size(); j++)
+        {
+            if( str->at( i ) == accents.at( j ) )
+            {
+                str->at( i ) = noAccents.at( j );
+            }
+        }
+    }
+}
+
+void processInput( string * input )
+{
+    /* No dicionário as palavras não estão acentuadas. Por isso, temos que
+     * remover os acentos caso seja necessário. */
+    removeAccents( input );
+
+    /* No dicionário todas as palavras estão em letra maiúscula, por isso
+     * temos que converter a entrada. Utilizamos algorithm::transform */
+    transform( input->begin(), input->end(), input->begin(), ::toupper );
+}
+
 void doTheSearch()
 {
     cout << "Procurar por: ";
@@ -39,9 +67,7 @@ void doTheSearch()
     string input;
     cin >> input;
 
-    /* No dicionário todas as palavras estão em letra maiúscula, por isso
-     * temos que converter a entrada */
-    transform( input.begin(), input.end(), input.begin(), ::toupper );
+    processInput( &input );
 
     if( TRIE.search( input ) )
     {
