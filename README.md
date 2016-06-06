@@ -8,7 +8,7 @@ Implementamos as seguintes classes:
 <br>*Node*: É o nó da árvore. Nela temos as variáveis necessárias para guardar os dados e a função findChild() para andar pelos nós.
 <br>*Trie*: É a árvore em si. Ela possui uma instância de Node que é a raiz da árvore, uma função de inserção e outra de busca.
 
-No arquivo *main.cpp*, temos a função que popula a trie com dados do arquivo dicionario.txt, uma que trata a entrada do usuário (já que temos que remover os acentos e deixar tudo em maiúscula) e uma outra que enfim faz a busca pela palavra desejada.
+No arquivo *main.cpp*, temos: uma instância de trie; a função que popula essa instância com os dados do arquivo dicionario.txt; uma que trata a entrada do usuário (já que temos que remover os acentos e deixar tudo em maiúscula); e uma outra que, enfim, faz a busca pela palavra desejada.
 
 <hr>
 O arquivo utilizado como dicionário para o programa foi encontrado em: http://alcor.concordia.ca/~vjorge/Palavras-Cruzadas/Lista-de-Palavras.txt
