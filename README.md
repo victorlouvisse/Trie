@@ -1,5 +1,5 @@
 # Trie
-**Implementação da estrutura Trie proposta na disciplina de Org. Dados ministrada pelo professor Renato Mauro no CEFET/RJ.**
+**Implementação da estrutura Trie proposta na disciplina de Org. de Estruturas de Arquivos ministrada pelo professor Renato Mauro no CEFET/RJ.**
 
 <hr>
 
