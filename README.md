@@ -19,3 +19,7 @@ No arquivo *main.cpp*, temos a função que popula a trie com dados do arquivo d
 
 **Para executar o programa no Linux basta abrir o terminal no diretório do projeto e dar um ./make**
 <br>Obs.: Talvez seja necessário usar chmod +x make por causa da permissão.
+<hr>
+
+**Usando o programa**
+<br>O programa espera como entrada a palavra a ser buscada e retorna se achou ou não a palavra.
